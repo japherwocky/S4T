@@ -69,7 +69,7 @@ async def handle_chat_mode(stream_manager, provider="openai", model="gpt-4o-mini
                         continue
                 
                 # Display user message in the styled panel
-                ui_manager.print_user_message(user_message)
+                # ui_manager.print_user_message(user_message)
 
                 # Add user message to history
                 chat_context.conversation_history.append(
@@ -87,6 +87,8 @@ async def handle_chat_mode(stream_manager, provider="openai", model="gpt-4o-mini
                 break  # Exit the loop cleanly instead of sys.exit()
             except Exception as e:
                 print(f"[red]Error processing message:[/red] {e}")
+                import logging
+                logging.exception(e)
                 continue
     except asyncio.CancelledError:
         # Handle task cancellation gracefully

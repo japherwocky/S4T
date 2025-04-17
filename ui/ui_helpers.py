@@ -35,7 +35,7 @@ def display_welcome_banner(context, console=None, show_tools_info=True):
     # Print welcome banner with current model info
     console.print(Panel(
         panel_content,
-        title="Welcome to MCP CLI Chat",
+        title="Welcome to S4-T",
         title_align="center",
         expand=True,
         border_style=BORDER_PRIMARY

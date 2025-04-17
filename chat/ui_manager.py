@@ -207,7 +207,15 @@ class ChatUIManager:
                 self.tool_times = []
         
         assistant_panel_text = response_content if response_content else "[No Response]"
+        # assistant_panel_text = Markdown(assistant_panel_text)
         footer = f"Response time: {response_time:.2f}s"
+
+        print( f"[bold green]{'_'*120} [/]")
+        print( Markdown(assistant_panel_text))
+        print( f"[bold green]{'_'*120} [/]")
+        print( f"[green]{footer}[/]")
+        print(" ")
+        """
         print(
             Panel(
                 Markdown(assistant_panel_text), 
@@ -216,6 +224,7 @@ class ChatUIManager:
                 subtitle=footer
             )
         )
+        """
         
     async def handle_command(self, command):
         """Handle a command and update context if needed."""
