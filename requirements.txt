@@ -1,0 +1,3 @@
+typer
+prompt_toolkit
+# mcp
