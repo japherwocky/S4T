@@ -14,6 +14,11 @@ def get_llm_client(provider="openai", model="gpt-4o-mini", api_key=None, api_bas
 
         # return the ollama client
         return OllamaLLMClient(model=model)
+    
+    elif provider == "azure":
+        from llm.providers.openai_client import AzureOpenAILLMClient
+
+        return AzureOpenAILLMClient(model=model, api_key=api_key, api_base=api_base)  # pass keys through .env
     else:
         # unsupported provider
         raise ValueError(f"Unsupported provider: {provider}")

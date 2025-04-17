@@ -1,8 +1,8 @@
 {
-    "mcpServers": {
-      "sqlite": {
-        "command": "./env/Scripts/python.exe",
-        "args": ["./server.py"]
-      }
+  "mcpServers": {
+    "sqlite": {
+      "command": "./env/Scripts/python.exe",
+      "args": ["./server.py"]
     }
   }
+}

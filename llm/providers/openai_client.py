@@ -6,10 +6,12 @@ import uuid
 from typing import Any, Dict, List
 from dotenv import load_dotenv
 
-from openai import OpenAI
+from openai import OpenAI, AzureOpenAI
 from llm.providers.base import BaseLLMClient
 
 load_dotenv()
+
+
 
 class OpenAILLMClient(BaseLLMClient):
     def __init__(self, model="gpt-4o-mini", api_key=None, api_base=None):
@@ -80,3 +82,16 @@ class OpenAILLMClient(BaseLLMClient):
         except Exception as e:
             logging.error(f"OpenAI API Error: {str(e)}")
             raise ValueError(f"OpenAI API Error: {str(e)}")
+
+
+class AzureOpenAILLMClient(OpenAILLMClient):
+    def __init__(self, model="gpt-4o-mini", api_key=None, api_base=None, api_version='2024-12-01-preview'):
+        self.model = model
+        self.api_key = api_key or os.getenv("AZ_OPENAI_API_KEY")
+        self.api_base = api_base or os.getenv("AZ_OPENAI_ENDPOINT")
+        self.api_version = api_version or os.getenv("AZ_OPENAI_VERSION")
+
+        if not self.api_key:
+            raise ValueError("The OPENAI_API_KEY environment variable is not set.")
+        
+        self.client = AzureOpenAI(api_key=self.api_key, base_url=self.api_base, api_version='2024-12-01-preview')
